@@ -10,8 +10,8 @@ fi
 env=$1
 . ./env-$env.sh
 
-echo $PATH
+printf "$PATH\n"
 which mpicc
 make clean
-make
+make CC=mpicc LD=mpicc
 

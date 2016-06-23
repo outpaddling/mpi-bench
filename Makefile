@@ -11,12 +11,12 @@ OBJS    = mpi-bench.o
 # Do not add non-portable options (such as -Wall) using +=
 
 # Portable defaults.  Can be overridden by mk.conf or command line.
-CC          = mpicc
-#CFLAGS      = -Wall -g
-CPP         = mpicc -MM
-PRINTF      ?= printf
+CC          ?= mpicc
+LD          ?= ${CC}
+MKDIR       ?= mkdir
+INSTALL     ?= install
 
-LD          = ${CC}
+PREFIX      ?= /usr/local
 
 INCLUDES    += -I${PKGSRC}/include
 CFLAGS      += ${INCLUDES}
@@ -33,6 +33,11 @@ ${BIN}: ${OBJS}
 
 mpi-bench.o: mpi-bench.c mpi-bench.h protos.h
 	${CC} -c ${CFLAGS} mpi-bench.c
+
+
+install:
+	${MKDIR} ${DESTDIR}${PREFIX}/bin
+	${INSTALL} -c mpi-bench ${DESTDIR}${PREFIX}/bin
 
 ############################################################################
 # Remove generated files (objs and nroff output from man pages)
