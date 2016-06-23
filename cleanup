@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -f mpi_bench mpi_bench-151 mpi_bench-custom mpi_bench-pkgsrc output-*.*
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+n=8
+while [ $n -le 128 ]; do
+    printf "%d %f\n" $n `fgrep broadcast output.$n | awk ' { print $8 }'`
+    n=`expr $n + 8`
+done
+
