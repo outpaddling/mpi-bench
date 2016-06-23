@@ -12,7 +12,6 @@ OBJS    = mpi-bench.o
 
 # Portable defaults.  Can be overridden by mk.conf or command line.
 CC          ?= mpicc
-LD          ?= ${CC}
 MKDIR       ?= mkdir
 INSTALL     ?= install
 
@@ -29,7 +28,7 @@ all:    ${BIN}
 
 # Link rules
 ${BIN}: ${OBJS}
-	${LD} -o ${BIN} ${OBJS} ${LFLAGS}
+	${CC} -o ${BIN} ${OBJS} ${LFLAGS}
 
 mpi-bench.o: mpi-bench.c mpi-bench.h protos.h
 	${CC} -c ${CFLAGS} mpi-bench.c
