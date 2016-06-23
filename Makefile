@@ -35,8 +35,8 @@ mpi-bench.o: mpi-bench.c mpi-bench.h protos.h
 
 
 install:
-	${MKDIR} ${DESTDIR}${PREFIX}/bin
-	${INSTALL} -c mpi-bench ${DESTDIR}${PREFIX}/bin
+	${MKDIR} -p ${DESTDIR}${PREFIX}/bin
+	${INSTALL} -c -s mpi-bench ${DESTDIR}${PREFIX}/bin
 
 ############################################################################
 # Remove generated files (objs and nroff output from man pages)
