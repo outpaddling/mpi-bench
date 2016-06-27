@@ -5,5 +5,5 @@ export SBATCH_CPU_BIND_VERBOSE=verbose
 source /etc/bashrc
 module purge
 module load /sharedapps/modulefiles/icc/15.2
-module load openmpi/1.10.2
+module load openmpi/1.8.7
 
