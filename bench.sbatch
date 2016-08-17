@@ -25,5 +25,5 @@ env=$1
 # srun ./mpi-bench 400
 
 # Ralph Castain diagnostic
-srun --cpu_bind=none ./mpi-bench 40000
+srun --cpu_bind=none ./mpi-bench 400
 
