@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/sh -e
 
-#SBATCH --ntasks=6
+#SBATCH --ntasks=48
 ##SBATCH --nodelist=compute-001
 
 if [ $# != 1 ]; then
@@ -19,11 +19,10 @@ env=$1
 # SLURM.
 #mpirun --mca btl self,sm ./mpi-bench
 #mpirun -mca plm_base_verbose 15 ./mpi-bench
-#mpirun --report-bindings ./mpi-bench 400
+mpirun --report-bindings ./mpi-bench 4000
 
 # This works fine
 # srun ./mpi-bench 400
 
 # Ralph Castain diagnostic
 srun --cpu_bind=none ./mpi-bench 400
-
