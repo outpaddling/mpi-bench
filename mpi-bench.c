@@ -170,7 +170,7 @@ int     root_process(int argc, char *argv[], int proc_count, int trials)
     /* Run several trials to drown out startup variability */
     for (trial = 0; trial < trials; ++trial)
     {
-	printf("\n==========\nTrial %u:\n==========\n\n", trial);
+	printf("\n==========\nTrial %u\n==========\n\n", trial);
 	
 	/* Send messages to all other processes */
 	for (proc = 1; proc < proc_count; ++proc)
