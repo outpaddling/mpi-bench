@@ -79,7 +79,7 @@ int     main(int argc, char *argv[])
     for ( c = 0; c < CPU_SETSIZE; c++ )
     {
 	if ( CPU_ISSET_S(c, size, mask) )
-	    printf("CPU %d is set\n", c);
+	    printf("CPU %u is set\n", c);
     }
     
     CPU_FREE(mask);
@@ -151,7 +151,7 @@ int     main(int argc, char *argv[])
 int     root_process(int argc, char *argv[], int proc_count, int trials)
 
 {
-    int             proc,
+    unsigned int    proc,
 		    m,
 		    trial;
     MPI_Status      mpi_status;
@@ -163,13 +163,14 @@ int     root_process(int argc, char *argv[], int proc_count, int trials)
     
     /* Report existence of this process to user */
     gethostname(hostname, HOST_NAME_LEN);
-    printf("Root host: %s\n", hostname);
-    printf("Proc count: %d\n", proc_count);
+    printf("Root host:  %s\n", hostname);
+    printf("Trials:     %u\n", trials);
+    printf("Proc count: %u\n", proc_count);
     
     /* Run several trials to drown out startup variability */
     for (trial = 0; trial < trials; ++trial)
     {
-	printf("Trial %d:\n", trial);
+	printf("\n==========\nTrial %u:\n==========\n\n", trial);
 	
 	/* Send messages to all other processes */
 	for (proc = 1; proc < proc_count; ++proc)
@@ -178,7 +179,7 @@ int     root_process(int argc, char *argv[], int proc_count, int trials)
 		    TAG_GENERIC, MPI_COMM_WORLD, &mpi_status);
 	    
 	    /* Send and receive 1 byte message to test latency */
-	    DPRINTF("\nProcess %d  Host %s\n", proc, hostname);
+	    DPRINTF("Process %u  Host %s\n", proc, hostname);
 	
 	    begin_time = MPI_Wtime();
 	    // Causes program to hang after a couple iterations
@@ -190,7 +191,7 @@ int     root_process(int argc, char *argv[], int proc_count, int trials)
 	    }
 	    end_time = MPI_Wtime();
 	    elapsed_ms = (end_time - begin_time) * MS_PER_SEC_DBL;
-	    printf("Average 1-byte round-trip time over %d messages = %0.2fms\n",
+	    printf("Average 1-byte round-trip time over %u messages = %0.2fms\n",
 		SMALL_MSG_COUNT, elapsed_ms / SMALL_MSG_COUNT);
     
 	    /* Send and receive large message to test bandwidth */
