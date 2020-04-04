@@ -1,0 +1,4 @@
+.*.bak
+slurm-*.out
+*.o
+mpi-bench

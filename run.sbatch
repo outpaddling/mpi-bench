@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
-#SBATCH --ntasks=8
-##SBATCH --nodelist=compute-001
+#SBATCH --ntasks=64
+#SBATCH --job-name=mpi-bench
 
 if [ $# != 1 ]; then
     printf "Usage: $0 freebsd|gcc|icc|pkgsrc|yum\n"
@@ -19,7 +19,7 @@ env=$1
 # SLURM.
 #mpirun --mca btl self,sm ./mpi-bench
 #mpirun -mca plm_base_verbose 15 ./mpi-bench
-mpirun --report-bindings ./mpi-bench 3
+mpirun --report-bindings ./mpi-bench 10
 
 # This works fine
 # srun ./mpi-bench 400

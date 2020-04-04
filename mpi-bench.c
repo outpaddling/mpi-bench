@@ -168,7 +168,7 @@ int     root_process(int argc, char *argv[], int proc_count, int trials)
     printf("Proc count: %u\n", proc_count);
     
     /* Run several trials to drown out startup variability */
-    for (trial = 0; trial < trials; ++trial)
+    for (trial = 1; trial <= trials; ++trial)
     {
 	printf("\n==========\nTrial %u\n==========\n\n", trial);
 	
@@ -234,7 +234,7 @@ int     non_root_process(int trials)
     
     gethostname(hostname, HOST_NAME_LEN);
     
-    for (trial = 0; trial < trials; ++trial)
+    for (trial = 1; trial <= trials; ++trial)
     {
 	/* Report which host we're running on */
 	MPI_Send(hostname, HOST_NAME_LEN, MPI_CHAR, RANK_ROOT, 
