@@ -1,5 +1,4 @@
 #!/bin/sh
 
-PATH=${PATH}:/usr/local/mpi/openmpi3/bin
+PATH=/usr/local/mpi/openmpi3/bin:$PATH
 export PATH
-
